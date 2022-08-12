@@ -1,1 +1,5 @@
 # cookiecutter-base
+
+## Application
+
+## Foundation
