@@ -1,0 +1,11 @@
+---
+- name: Setup base manifest
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Apply base manifest to the cluster.
+      kubernetes.core.k8s:
+        src: ./manifests/argocd/base-manifest.yaml
+        state: present
+        namespace: argocd

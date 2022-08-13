@@ -1,0 +1,51 @@
+name: infracost
+on: [pull_request]
+
+jobs:
+  multi-project-config-file:
+    name: Multi-project config file
+    runs-on: terraform-runner
+    env:
+      INFRACOST_ENABLE_CLOUD: true
+
+    steps:
+
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v2
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Checkout PR branch for config
+        uses: actions/checkout@v2
+
+      - name: Copy config
+        run: cp infracost-config.yml /tmp
+
+      - name: Checkout base branch
+        uses: actions/checkout@v2
+        with:
+          ref: '${{ github.event.pull_request.base.ref }}'
+
+      - name: Generate Infracost cost estimate baseline
+        run: |
+          infracost breakdown --config-file=/tmp/infracost-config.yml \
+                              --format=json \
+                              --out-file=/tmp/infracost-base.json
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v2
+
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --config-file=/tmp/infracost-config.yml \
+                              --format=json \
+                              --compare-to=/tmp/infracost-base.json \
+                              --out-file=/tmp/infracost.json
+
+      - name: Post Infracost comment
+        run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{github.token}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update

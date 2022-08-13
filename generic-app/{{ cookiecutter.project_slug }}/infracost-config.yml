@@ -1,0 +1,8 @@
+version: 0.1
+
+projects:
+  - path: .devops/apps/init
+  - path: .devops/apps/environment/dev
+  - path: .devops/apps/environment/qa
+  - path: .devops/apps/environment/stage
+  - path: .devops/apps/environment/prod

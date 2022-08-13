@@ -1,0 +1,5 @@
+namespace   = "{{ cookiecutter.tfvars_namespace }}"
+environment = "{{ cookiecutter.tfvars_environment }}"
+stage       = "{{ cookiecutter.tfvars_stage }}"
+name        = "{{ cookiecutter.tfvars_name }}"
+region      = "{{ cookiecutter.aws_region }}"

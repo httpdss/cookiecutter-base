@@ -1,0 +1,77 @@
+# your override should supply an envName
+envName: null
+
+# if set, override all Applications to use this project
+projectOverride: default
+
+default:
+  app:
+    enableAutoSync: null
+    autoSyncPrune: true
+    selfHeal: true
+    destination:
+      namespace: null
+      server: null
+    project: null
+    source:
+      path: null
+      repoURL: null
+      targetRevision: HEAD
+
+applications:
+  helm-guestbook:
+    enabled: false
+    destination:
+      namespace: guestbook
+      server: null
+    project: null
+    source:
+      path: helm-guestbook
+      repoURL: https://github.com/argoproj/argocd-example-apps.git
+      targetRevision: master
+      # extraSourceFields: |
+      #   helm:
+      #     valueFiles:
+      #     - {{ $.Values.envName }}-values.yaml
+  sealed-secrets:
+    enabled: false
+    destination:
+      namespace: top-secret-ns
+      server: null
+    project: null
+    source:
+      path: ""
+      repoURL: https://bitnami-labs.github.io/sealed-secrets
+      targetRevision: 2.1.6
+      extraSourceFields: |
+        chart: sealed-secrets
+        helm:
+          releaseName: sealed-secrets
+  prometheus:
+    enabled: false
+    destination:
+      namespace: monitoring
+      server: null
+    project: null
+    source:
+      path: ""
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 15.8.5
+      extraSourceFields: |
+        chart: prometheus
+        helm:
+          releaseName: prometheus
+  dashboard:
+    enabled: false
+    destination:
+      namespace: monitoring
+      server: null
+    project: null
+    source:
+      path: ""
+      repoURL: https://kubernetes.github.io/dashboard/
+      targetRevision: 5.4.1
+      extraSourceFields: |
+        chart: kubernetes-dashboard
+        helm:
+          releaseName: kubernetes-dashboard

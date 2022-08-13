@@ -1,0 +1,79 @@
+name: 'execute-tf-environment-stage'
+on:
+  pull_request:
+      paths:
+      - '.devops/apps/environment/stage/**'
+      - '.github/workflows/execute-tf-environment-stage.yaml'
+  push:
+      paths:
+      - '.devops/apps/environment/stage/**'
+      - '.github/workflows/execute-tf-environment-stage.yaml'
+      branches:
+      - main
+
+jobs:
+  terraform:
+    name: 'Terraform CI'
+    runs-on: terraform-runner
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+    env:
+      working-directory: ./.devops/apps/environment/stage
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    # - name: Invalidate lock
+    #   id: invalidate-lock
+    #   run: terraform force-unlock -force XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
+      continue-on-error: true
+
+    - name: Reformat Plan
+      id: colored-plan
+      run: |
+        echo '${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}' \
+        | sed -E 's/^([[:space:]]+)([-+])/\2\1/g' > plan.txt
+
+    - name: Put Plan in Env Var
+      run: |
+        PLAN=$(cat plan.txt)
+        echo "PLAN<<EOF" >> $GITHUB_ENV
+        echo "$PLAN" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Post Plan and Apply to GitHub PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token-user-login: 'github-actions[bot]'
+        message: |
+          Plan for **.devops/apps/environment/stage**:
+
+          ```diff
+          ${{ env.PLAN }}
+          ```
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve

@@ -1,5 +1,5 @@
 # cookiecutter-base
 
-## Application
+## Fondation
 
-## Foundation
+## Generic Application

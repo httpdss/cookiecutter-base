@@ -1,0 +1,13 @@
+{
+    "project_slug": "initial-terraform",
+    "project_repo": "org_name/project_repo",
+    "devops_team": "@org_name/team_name",
+    "aws_region": ["us-east-1", "us-west-2"],
+    "aws_account_id": "XXXXXXXXXXXX",
+    "terraform_version": "1.1.0",
+    "aws_gha_trusted_account_role": "gha_trusted_account_role",
+    "tfvars_namespace": "common",
+    "tfvars_environment": ["ue1", "uw2"],
+    "tfvars_stage": ["dev", "qa", "stage", "prod"],
+    "tfvars_name": "default"
+}

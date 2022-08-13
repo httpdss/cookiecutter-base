@@ -1,0 +1,8 @@
+version: 0.1
+
+projects:
+  - path: apps/init
+  - path: apps/environment/dev
+  - path: apps/environment/qa
+  - path: apps/environment/stage
+  - path: apps/environment/prod
