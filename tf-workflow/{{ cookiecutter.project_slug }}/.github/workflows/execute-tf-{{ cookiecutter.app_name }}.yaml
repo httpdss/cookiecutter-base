@@ -19,7 +19,7 @@ jobs:
       run:
         working-directory: ${{ env.working-directory }}
     env:
-      working-directory: ./{% if cookiecutter.app_type = "generic" %}.devops/{% end %}apps/{{ cookiecutter.app_name }}
+      working-directory: ./{% if cookiecutter.app_type = "generic" -%}.devops/{%- endif %}apps/{{ cookiecutter.app_name }}
 
     steps:
     - name: Checkout
@@ -68,7 +68,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         repo-token-user-login: 'github-actions[bot]'
         message: |
-          Plan for **{% if cookiecutter.app_type = "generic" %}.devops/{% end %}apps/{{ cookiecutter.app_name }}**:
+          Plan for **{% if cookiecutter.app_type = "generic" -%}.devops/{%- endif %}apps/{{ cookiecutter.app_name }}**:
 
           ```diff
           ${{ env.PLAN }}
