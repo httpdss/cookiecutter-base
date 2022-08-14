@@ -6,7 +6,7 @@ on:
 
 jobs:
   semver:
-    runs-on: terraform-runner
+    runs-on: {{ cookiecutter.github_runner }}
     if: ${{ false }}  # disable for now
     steps:
       - uses: release-drafter/release-drafter@v5

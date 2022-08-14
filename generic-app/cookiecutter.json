@@ -1,5 +1,11 @@
 {
-    "project_name": "Python Boilerplate",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-    "devops_team": "@org_name/team_name"
+  "project_name": "Generic Application",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "devops_team": "@org_name/team_name",
+  "aws_region": "us-east-1",
+  "aws_account_id": "XXXXXXXXXXXX",
+  "terraform_version": "1.1.0",
+  "aws_gha_trusted_account_role": "gha_trusted_account_role",
+  "github_foundation_repo": "https://github.com/org_name/repo_name.git",
+  "github_runner": "ubuntu-latest"
 }

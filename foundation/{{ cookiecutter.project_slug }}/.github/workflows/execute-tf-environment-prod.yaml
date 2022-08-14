@@ -14,7 +14,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform CI'
-    runs-on: terraform-runner
+    runs-on: {{ cookiecutter.github_runner }}
     defaults:
       run:
         working-directory: ${{ env.working-directory }}

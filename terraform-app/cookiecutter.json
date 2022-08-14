@@ -9,5 +9,6 @@
     "tfvars_namespace": "common",
     "tfvars_environment": ["ue1", "uw2"],
     "tfvars_stage": ["dev", "qa", "stage", "prod"],
-    "tfvars_name": "default"
+    "tfvars_name": "default",
+    "github_runner": "ubuntu-latest"
 }

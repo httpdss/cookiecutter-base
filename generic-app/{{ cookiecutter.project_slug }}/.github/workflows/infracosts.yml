@@ -4,7 +4,7 @@ on: [pull_request]
 jobs:
   multi-project-config-file:
     name: Multi-project config file
-    runs-on: terraform-runner
+    runs-on: {{ cookiecutter.github_runner }}
     env:
       INFRACOST_ENABLE_CLOUD: true
 
