@@ -5,6 +5,6 @@
         "foundation",
         "generic"
     ],
-    "runner": "terraform-runner"
+    "github_runner": "ubuntu-latest"
 
 }

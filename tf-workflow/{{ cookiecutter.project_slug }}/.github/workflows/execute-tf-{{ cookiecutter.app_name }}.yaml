@@ -14,12 +14,12 @@ on:
 jobs:
   terraform:
     name: 'Terraform CI'
-    runs-on: {{ cookiecutter.runner }}
+    runs-on: {{ cookiecutter.github_runner }}
     defaults:
       run:
         working-directory: ${{ env.working-directory }}
     env:
-      working-directory: ./.devops/apps/{{ cookiecutter.app_name }}
+      working-directory: ./{% if cookiecutter.app_type = "generic" %}.devops/{% end %}apps/{{ cookiecutter.app_name }}
 
     steps:
     - name: Checkout
