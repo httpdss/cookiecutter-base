@@ -1,0 +1,10 @@
+{
+    "app_name": "init",
+    "project_slug": "{{ cookiecutter.app_name}}",
+    "app_type": [
+        "foundation",
+        "generic"
+    ],
+    "runner": "terraform-runner"
+
+}
