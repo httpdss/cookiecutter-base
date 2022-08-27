@@ -6,6 +6,5 @@
   "aws_account_id": "XXXXXXXXXXXX",
   "terraform_version": "1.1.0",
   "aws_gha_trusted_account_role": "gha_trusted_account_role",
-  "github_foundation_repo": "https://github.com/org_name/repo_name.git",
   "github_runner": "ubuntu-latest"
 }
