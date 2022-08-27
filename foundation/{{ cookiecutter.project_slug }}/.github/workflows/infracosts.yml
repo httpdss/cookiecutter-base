@@ -13,7 +13,7 @@ jobs:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
-          api-key: ${{'{{'}} secrets.INFRACOST_API_KEY {{'}}'}}
+          api-key: ${% raw %}{{ secrets.INFRACOST_API_KEY }}{% endraw %}
 
       - name: Checkout PR branch for config
         uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout base branch
         uses: actions/checkout@v2
         with:
-          ref: '${{'{{'}} github.event.pull_request.base.ref {{'}}'}}'
+          ref: '${% raw %}{{ github.event.pull_request.base.ref }}{% endraw %}'
 
       - name: Generate Infracost cost estimate baseline
         run: |
@@ -46,6 +46,6 @@ jobs:
         run: |
           infracost comment github --path=/tmp/infracost.json \
                                    --repo=$GITHUB_REPOSITORY \
-                                   --github-token=${{'{{'}} github.token {{'}}'}} \
-                                   --pull-request=${{'{{'}} github.event.pull_request.number {{'}}'}} \
+                                   --github-token=${% raw %}{{ github.token }}{% endraw %} \
+                                   --pull-request=${% raw %}{{ github.event.pull_request.number }}{% endraw %} \
                                    --behavior=update

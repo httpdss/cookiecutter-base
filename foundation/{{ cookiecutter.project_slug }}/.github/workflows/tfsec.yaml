@@ -24,4 +24,4 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
           soft_fail: true
-          working_directory: apps/{{'{{'}} matrix.app {{'}}'}}
+          working_directory: apps/{% raw %}{{ matrix.app }}{% endraw %}

@@ -17,7 +17,7 @@ jobs:
     runs-on: {{ cookiecutter.github_runner }}
     defaults:
       run:
-        working-directory: ${{'{{'}} env.working-directory {{'}}'}}
+        working-directory: ${% raw %}{{ env.working-directory }}{% endraw %}
     env:
       working-directory: ./{% if cookiecutter.app_type = "generic" -%}.devops/{%- endif %}apps/{{ cookiecutter.app_name }}
 
@@ -52,7 +52,7 @@ jobs:
     - name: Reformat Plan
       id: colored-plan
       run: |
-        echo '${{'{{'}} steps.plan.outputs.stdout || steps.plan.outputs.stderr {{'}}'}}'' \
+        echo '${% raw %}{{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}{% endraw %}'' \
         | sed -E 's/^([[:space:]]+)([-+])/\2\1/g' > plan.txt
 
     - name: Put Plan in Env Var
@@ -65,13 +65,13 @@ jobs:
     - name: Post Plan and Apply to GitHub PR
       uses: mshick/add-pr-comment@v1
       with:
-        repo-token: ${{'{{'}} secrets.GITHUB_TOKEN {{'}}'}}
+        repo-token: ${% raw %}{{ secrets.GITHUB_TOKEN }}{% endraw %}
         repo-token-user-login: 'github-actions[bot]'
         message: |
           Plan for **{% if cookiecutter.app_type = "generic" -%}.devops/{%- endif %}apps/{{ cookiecutter.app_name }}**:
 
           ```diff
-          ${{'{{'}} env.PLAN {{'}}'}}
+          ${% raw %}{{ env.PLAN }}{% endraw %}
           ```
 
     - name: Terraform Apply

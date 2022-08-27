@@ -14,4 +14,4 @@ jobs:
           prerelease: false
           config-name: auto-release.yml
         env:
-          GITHUB_TOKEN: ${{'{{'}} secrets.GITHUB_TOKEN {{'}}'}}
+          GITHUB_TOKEN: ${% raw %}{{ secrets.GITHUB_TOKEN }}{% endraw %}

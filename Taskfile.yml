@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  create-venv:
+    cmds:
+      - python3 -m venv venv
+  install-requirements:
+    cmds:
+      - source venv/bin/activate
+      - pip install -r requirements.txt
