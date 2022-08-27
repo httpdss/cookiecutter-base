@@ -17,7 +17,7 @@ jobs:
     runs-on: {{ cookiecutter.github_runner }}
     defaults:
       run:
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{'{{'}} env.working-directory {{'}}'}}
     env:
       working-directory: ./.devops/apps/environment/prod
 
@@ -52,7 +52,7 @@ jobs:
     - name: Reformat Plan
       id: colored-plan
       run: |
-        echo '${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}' \
+        echo '${{'{{'}} steps.plan.outputs.stdout || steps.plan.outputs.stderr {{'}}'}}'' \
         | sed -E 's/^([[:space:]]+)([-+])/\2\1/g' > plan.txt
 
     - name: Put Plan in Env Var
@@ -71,7 +71,7 @@ jobs:
           Plan for **.devops/apps/environment/prod**:
 
           ```diff
-          ${{ env.PLAN }}
+          ${{'{{'}} env.PLAN {{'}}'}}
           ```
 
     - name: Terraform Apply
