@@ -13,7 +13,7 @@ jobs:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
+          api-key: ${{'{{'}} secrets.INFRACOST_API_KEY {{'}}'}}
 
       - name: Checkout PR branch for config
         uses: actions/checkout@v2

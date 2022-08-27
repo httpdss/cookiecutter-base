@@ -65,7 +65,7 @@ jobs:
     - name: Post Plan and Apply to GitHub PR
       uses: mshick/add-pr-comment@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{'{{'}} secrets.GITHUB_TOKEN {{'}}'}}
         repo-token-user-login: 'github-actions[bot]'
         message: |
           Plan for **.devops/apps/environment/stage**:

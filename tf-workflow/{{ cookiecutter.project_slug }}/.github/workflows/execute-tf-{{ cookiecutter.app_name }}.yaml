@@ -65,7 +65,7 @@ jobs:
     - name: Post Plan and Apply to GitHub PR
       uses: mshick/add-pr-comment@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{'{{'}} secrets.GITHUB_TOKEN {{'}}'}}
         repo-token-user-login: 'github-actions[bot]'
         message: |
           Plan for **{% if cookiecutter.app_type = "generic" -%}.devops/{%- endif %}apps/{{ cookiecutter.app_name }}**:
