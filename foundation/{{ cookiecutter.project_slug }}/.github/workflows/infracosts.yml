@@ -24,7 +24,7 @@ jobs:
       - name: Checkout base branch
         uses: actions/checkout@v2
         with:
-          ref: '${{ github.event.pull_request.base.ref }}'
+          ref: '${{'{{'}} github.event.pull_request.base.ref {{'}}'}}'
 
       - name: Generate Infracost cost estimate baseline
         run: |
