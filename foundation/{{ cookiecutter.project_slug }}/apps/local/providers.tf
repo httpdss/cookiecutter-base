@@ -7,5 +7,5 @@ provider "github" {
 }
 
 terraform {
-  required_version = ">= {{ terraform_version}}"
+  required_version = ">= {{ cookiecutter.terraform_version}}"
 }

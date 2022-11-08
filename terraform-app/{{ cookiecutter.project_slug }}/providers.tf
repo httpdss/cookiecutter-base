@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 terraform {
-  required_version = ">= {{ terraform_version}}"
+  required_version = ">= {{ cookiecutter.terraform_version}}"
 
   backend "s3" {
     bucket         = "{{ cookiecutter.remote_backend_account_id }}-tf-backend"
