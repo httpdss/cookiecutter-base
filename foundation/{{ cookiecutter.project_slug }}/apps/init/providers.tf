@@ -2,7 +2,7 @@ provider "aws" {
   region = "{{ cookiecutter.aws_region }}"
   assume_role {
     role_arn     = local.iam_role_arn
-    session_name = "${local.service_stage}-init-session"
+    session_name = "default-session"
   }
 }
 
