@@ -1,0 +1,13 @@
+{
+    "app_name": "tfbackend",
+    "project_slug": "{{ cookiecutter.app_name}}",
+    "github_runner": "ubuntu-latest",
+    "aws_region": "us-east-1",
+    "aws_account_id": "XXXXXXXXXXXX",
+    "org_name": "myorg",
+    "devops_email": "devops@{{ cookiecutter.org_name}}.com",
+    "tag_enviroment": "prod",
+    "tag_owner": "devops@example.com",
+    "tag_application": "{{ cookiecutter.app_name}}",
+    "tag_business_unit": ""
+}

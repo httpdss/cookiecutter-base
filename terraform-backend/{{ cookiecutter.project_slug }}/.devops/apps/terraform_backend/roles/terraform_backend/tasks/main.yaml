@@ -1,0 +1,43 @@
+- name: "Create a role without policy"
+  community.aws.iam_role:
+    name: "{{ iam_role_name }}"
+    state: present
+    assume_role_policy_document: " {{ lookup( 'template', '../template/iam-role-assume-role-policy.j2') }} "
+    tags: "{{ aws_tags | default({}) | items2dict }}"
+
+
+- name: Create S3 policy from template
+  community.aws.iam_policy:
+    iam_type: role
+    iam_name: "{{ iam_role_name }}"
+    policy_name: "{{ iam_role_name }}"
+    state: present
+    policy_json: " {{ lookup( 'template', '../template/iam-role-policy.j2') }} "
+
+
+- name: "Create S3 bucket"
+  amazon.aws.s3_bucket:
+    name: "{{ s3_bucket_name }}"
+    state: present
+    encryption: "{{ s3_bucket_encryption }}"
+    region: "{{ aws_region }}"
+    policy: " {{ lookup( 'template', '../template/s3-bucket-policy.j2') }} "
+    public_access:
+      block_public_acls: yes
+      block_public_policy: yes
+      ignore_public_acls: yes
+      restrict_public_buckets: yes
+    versioning: "{{ s3_bucket_versioning }}"
+    tags: "{{ aws_tags | default({}) | items2dict }}"
+
+
+- name: "Create DynamoDB table"
+  community.aws.dynamodb_table:
+    name: "{{ dynamodb_table_name }}"
+    state: present
+    region: "{{ aws_region }}"
+    hash_key_name: "{{ dynamodb_table_hash_key_name }}"
+    hash_key_type: "{{ dynamodb_table_hash_key_type }}"
+    read_capacity: "{{ dynamodb_table_read_capacity }}"
+    write_capacity: "{{ dynamodb_table_write_capacity }}"
+    tags: "{{ aws_tags | default({}) | items2dict }}"

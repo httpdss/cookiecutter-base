@@ -1,0 +1,30 @@
+---
+- name: Create Terraform state backend on aws
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - role: terraform_backend
+      vars:
+        aws_region: "{{ cookiecutter.aws_region }}"
+        aws_account_id: "{{ cookiecutter.aws_account_id }}"
+        aws_tags:
+        - key: {{ cookiecutter.org_name }}_name
+          value: "{{ aws_account_id }}-tfstate"
+        - key: {{ cookiecutter.org_name }}_environment
+          value: {{ cookiecutter.tag_environment }}
+        - key: {{ cookiecutter.org_name }}_owner
+          value: {{ cookiecutter.tag_owner }}
+        - key: {{ cookiecutter.org_name }}_application
+          value: {{ cookiecutter.tag_application }}}
+        - key: {{ cookiecutter.org_name }}_business-unit
+          value: {{ cookiecutter.tag_business_unit }}
+        iam_role_name: "tf-backend"
+        s3_bucket_name: "{{ cookiecutter.aws_account_id }}-tfstate"
+        s3_bucket_encryption: "AES256"
+        s3_bucket_versioning: "yes"
+        dynamodb_table_name: "{{ cookiecutter.aws_account_id }}-tfstate"
+        dynamodb_table_hash_key_name: "LockID"
+        dynamodb_table_hash_key_type: "STRING"
+        dynamodb_table_read_capacity: 5
+        dynamodb_table_write_capacity: 5

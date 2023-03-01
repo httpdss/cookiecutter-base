@@ -1,0 +1,16 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowOtherAccounts",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::{{ aws_account_id }}:root"
+                ]
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::{{ aws_account_id }}-tfstate"
+        }
+    ]
+}
