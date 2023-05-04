@@ -1,3 +1,7 @@
+# Fallback to the devops team if no CODEOWNERS file is found
+*           {{ cookiecutter.devops_team }}
+
+# DevOps related files
 .devops/    {{ cookiecutter.devops_team }}
 .github/    {{ cookiecutter.devops_team }}
 CODEOWNERS  {{ cookiecutter.devops_team }}
