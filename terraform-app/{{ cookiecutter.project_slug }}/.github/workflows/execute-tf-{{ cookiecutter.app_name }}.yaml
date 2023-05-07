@@ -1,0 +1,23 @@
+name: 'execute-tf-{{ cookiecutter.app_name }}'
+on:
+  pull_request:
+      paths:
+      - '.devops/apps/{{ cookiecutter.app_name }}/**'
+      - '.github/workflows/execute-tf-{{ cookiecutter.app_name }}.yaml'
+  push:
+      paths:
+      - '.devops/apps/{{ cookiecutter.app_name }}/**'
+      - '.github/workflows/execute-tf-{{ cookiecutter.app_name }}.yaml'
+      branches:
+      - main
+
+jobs:
+  run-terraform:
+    uses: 'httpdss/github-workflows/.github/workflows/terraform-workflow.yaml@{{ cookiecutter.terraform_workflow_version }}'
+    with:
+      working-directory: ./.devops/apps/{{ cookiecutter.app_name }}
+      runner: {{ cookiecutter.github_runner }}
+      apply-branch: 'refs/heads/main'
+      force-apply: false
+    secrets:
+      repo-token: ${% raw %}{{ secrets.GITHUB_TOKEN }}{% raw %}
