@@ -3,7 +3,10 @@ repos:
   rev: v4.4.0
   hooks:
     - id: check-yaml
-      files: \.devops/.*\.yml
+      files: \.devops/.*\.yaml
+    - id: check-added-large-files
+    - id: check-merge-conflict
+
 - repo: https://github.com/antonbabenko/pre-commit-terraform
   rev: v1.78.0
   hooks:
