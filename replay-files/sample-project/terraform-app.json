@@ -12,6 +12,9 @@
         "tfvars_namespace": "namespace",
         "tfvars_environment": "ue1",
         "tfvars_stage": "prod",
-        "tfvars_name": "default"
+        "tfvars_name": "default",
+        "github_runner": "ubuntu-latest",
+        "terraform_workflow_version": "v0",
+        "app_name": "basic"
     }
 }

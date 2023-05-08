@@ -1,3 +1,0 @@
-.devops/    {{ cookiecutter.devops_team }}
-.github/    {{ cookiecutter.devops_team }}
-CODEOWNERS  {{ cookiecutter.devops_team }}

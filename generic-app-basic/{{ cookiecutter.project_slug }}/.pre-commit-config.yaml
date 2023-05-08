@@ -1,11 +1,14 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.2.0
+  rev: v4.4.0
   hooks:
     - id: check-yaml
-      path: .devops/**/*.yaml
+      files: \.devops/.*\.yaml
+    - id: check-added-large-files
+    - id: check-merge-conflict
+
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.71.0
+  rev: v1.78.0
   hooks:
     - id: terraform_fmt
-      path: .devops/**/*.tf
+      files: \.devops/.*\.tf
