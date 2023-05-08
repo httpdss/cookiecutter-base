@@ -1,7 +1,7 @@
 {
     "cookiecutter": {
-        "project_name": "basic",
-        "project_slug": "basic",
+        "project_name": "generic-app-basic",
+        "project_slug": "generic-app-basic",
         "devops_team": "@org_name/devops_team",
         "aws_region": "us-east-1",
         "aws_account_id": "XXXXXXXXXXXX",
@@ -10,5 +10,3 @@
         "github_runner": "ubuntu-latest"
     }
 }
-
-
