@@ -1,16 +1,10 @@
 # cookiecutter-base
 
-## Foundation
-
-## Generic Application
-
 ## Generic Application Basic
 
 ## Terraform Application
 
 ## Terraform Module
-
-## Terraform Workflow
 
 ## Useful commands
 
