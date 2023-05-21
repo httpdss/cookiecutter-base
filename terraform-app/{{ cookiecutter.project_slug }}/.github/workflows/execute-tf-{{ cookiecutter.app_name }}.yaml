@@ -20,4 +20,4 @@ jobs:
       apply-branch: 'refs/heads/main'
       force-apply: false
     secrets:
-      repo-token: ${% raw %}{{ secrets.GITHUB_TOKEN }}{% raw %}
+      repo-token: ${% raw %}{{ secrets.GITHUB_TOKEN }}{% endraw %}
