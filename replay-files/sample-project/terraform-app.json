@@ -14,5 +14,6 @@
   "tfvars_name": "default",
   "app_name": "terraform-app",
   "github_runner": "ubuntu-latest",
-  "terraform_workflow_version": "v0"
+  "terraform_workflow_version": "v0",
+  "org_name": "org_name"
 }

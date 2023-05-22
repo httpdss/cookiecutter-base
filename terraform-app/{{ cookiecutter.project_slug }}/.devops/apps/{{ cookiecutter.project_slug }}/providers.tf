@@ -5,6 +5,17 @@ provider "aws" {
     role_arn     = local.iam_role_arn
     session_name = "default-session"
   }
+
+  default_tags {
+    tags = {
+      "{{ cookiecutter.org_name }}-application"     = "{{ cookiecutter.project_repo }}"
+      "{{ cookiecutter.org_name }}-environment"     = "TBD"
+      "{{ cookiecutter.org_name }}-slack"           = "TBD"
+      "{{ cookiecutter.org_name }}-cost-center"     = "TBD"
+      "{{ cookiecutter.org_name }}-terraform"       = "true"
+      "{{ cookiecutter.org_name }}-expiration-date" = "TBD"
+    }
+  }
 }
 
 terraform {
